@@ -1,0 +1,1 @@
+export { FruitsVegetable } from "./FruitsVegetable";
