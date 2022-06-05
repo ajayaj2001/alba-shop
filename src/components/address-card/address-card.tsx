@@ -81,7 +81,7 @@ const UpdateAddress = (props: FormikProps<FormValues> & MyFormProps) => {
         <TextField
           id="name"
           type="text"
-          placeholder="Enter Title eg : ( home )"
+          placeholder="eg : ( home / work / college  )"
           error={touched.name && errors.name}
           value={values.name}
           onChange={handleChange}

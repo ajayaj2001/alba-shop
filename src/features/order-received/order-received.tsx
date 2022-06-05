@@ -13,42 +13,62 @@ import OrderReceivedWrapper, {
   ListTitle,
   ListDes,
 } from "./order-received.style";
+import { useCart } from "contexts/cart/use-cart";
 import { FormattedMessage } from "react-intl";
+import router from "next/router";
 
 type OrderReceivedProps = {
   cartDetails: any;
   userDetails: any;
   today: string;
-  totalPrice: number;
   paymentMethod: string;
   orderNumber: number;
   invoiceUrl: string;
 };
 
 const OrderReceived: React.FunctionComponent<OrderReceivedProps> = ({
-  cartDetails,
   userDetails,
   today,
-  totalPrice,
   paymentMethod,
   orderNumber,
   invoiceUrl,
 }) => {
   const { address, schedules } = userDetails;
+  const {
+    items,
+    clearCart,
+    calculatePrice,
+    calculateDiscount,
+    calculateSubTotalPrice,
+    cartItemsCount,
+  } = useCart();
+
+  const redirectHome = () => {
+    router.push("/");
+    clearCart();
+  };
+
+  const total = calculatePrice();
+  const discount = calculateDiscount();
+  const subTotalPrice = calculateSubTotalPrice();
 
   return (
     <OrderReceivedWrapper>
       <OrderReceivedContainer>
-        <Link href="/">
-          <a className="home-btn">
-            <FormattedMessage id="backHomeBtn" defaultMessage="Back to Home" />
-          </a>
-        </Link>
+        {/* <Link href="/"> */}
+        <a className="home-btn" onClick={redirectHome}>
+          <FormattedMessage id="backHomeBtn" defaultMessage="Back to Home" />
+        </a>
+        {/* </Link> */}
         {invoiceUrl && (
           <Link href={invoiceUrl}>
             <a
-              className="download-btn"
-              style={{ marginRight: "12rem" }}
+              className="home-btn"
+              style={{
+                marginRight: "12rem",
+                backgroundColor: "#009e7f",
+                color: "white",
+              }}
               download="invoice.pdf"
             >
               <FormattedMessage
@@ -95,7 +115,7 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = ({
               <Text bold className="title">
                 <FormattedMessage id="totalText" defaultMessage="Total" />
               </Text>
-              <Text>₹{totalPrice}</Text>
+              <Text>₹{total}</Text>
             </InfoBlock>
 
             <InfoBlock>
@@ -133,7 +153,7 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = ({
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>{cartDetails.length}</Text>
+              <Text>{cartItemsCount}</Text>
             </ListDes>
           </ListItem>
 
@@ -147,7 +167,7 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = ({
               </Text>
             </ListTitle>
             <ListDes>
-              {cartDetails.map((cart) => (
+              {items.map((cart) => (
                 <Text key={cart.id} style={{ paddingBottom: "1rem" }}>{`${
                   cart.title
                 } (${cart.quantity}) (${
@@ -221,7 +241,7 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = ({
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>₹{totalPrice}</Text>
+              <Text>₹{subTotalPrice}</Text>
             </ListDes>
           </ListItem>
 
@@ -252,7 +272,19 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = ({
               <Text>₹ 0</Text>
             </ListDes>
           </ListItem>
-
+          <ListItem>
+            <ListTitle>
+              <Text bold>
+                <FormattedMessage
+                  id="discountText"
+                  defaultMessage="Discount Amount"
+                />
+              </Text>
+            </ListTitle>
+            <ListDes>
+              <Text>- ₹{discount}</Text>
+            </ListDes>
+          </ListItem>
           <ListItem>
             <ListTitle>
               <Text bold>
@@ -260,7 +292,7 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = ({
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>₹{totalPrice}</Text>
+              <Text>₹{total}</Text>
             </ListDes>
           </ListItem>
         </TotalAmount>

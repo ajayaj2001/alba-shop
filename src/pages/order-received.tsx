@@ -18,14 +18,15 @@ import Invoice from "../components/pdfGenerator/Invoice";
 
 const OrderReceivedPage = () => {
   const { state } = useContext(ProfileContext);
-  const { items } = useCart();
+  const { items, calculatePrice, calculateDiscount, calculateSubTotalPrice } =
+    useCart();
   const [isClient, setIsClient] = useState(false);
-
-  const totalPrice = cartItemsTotalPrice(items);
   const orderNumber = generateOrderNumber();
   const currentDate = currentDateFormate();
 
-  var data;
+  const totalPrice = calculatePrice();
+  const discountPrice = calculateDiscount();
+  const subTotal = calculateSubTotalPrice();
 
   useEffect(() => {
     setIsClient(true);
@@ -35,18 +36,31 @@ const OrderReceivedPage = () => {
       Router.push("/checkout");
     }
 
-    spreadsheetDataFormatter(orderNumber, currentDate, items, state);
+    spreadsheetDataFormatter(
+      orderNumber,
+      currentDate,
+      items,
+      state,
+      totalPrice,
+      discountPrice,
+      subTotal
+    );
   }, []);
 
   return (
     <>
       {isClient && (
         <>
-          <SEO title="Invoice - Alba" description="Invoice Details" />
+          <SEO title="Invoice - AlbaShop" description="Invoice Details" />
           <BlobProvider
             document={
               <Invoice
                 invoice={invoiceDataFormatter(
+                  {
+                    subTotal,
+                    discountPrice,
+                    totalPrice,
+                  },
                   orderNumber,
                   currentDate,
                   items,
@@ -62,7 +76,6 @@ const OrderReceivedPage = () => {
                 invoiceUrl={url}
                 orderNumber={orderNumber}
                 today={currentDateFormate()}
-                totalPrice={totalPrice}
                 paymentMethod={orderPaymentMethod(state.card)}
               />
             )}

@@ -31,6 +31,7 @@ export const currentDateFormate = () => {
 };
 
 export const invoiceDataFormatter = (
+  priceDetails,
   invoiceNo,
   date,
   cartDetail,
@@ -45,7 +46,11 @@ export const invoiceDataFormatter = (
     };
   });
   return {
+    priceDetails,
     id: 1,
+    subTotal: 0,
+    discount: 0,
+    totalPrice: 0,
     invoice_no: invoiceNo,
     balance: 0,
     company: "",
@@ -66,14 +71,17 @@ const stringCombine = (arr, obj1, obj2) => {
   return temp;
 };
 
-export const spreadsheetDataFormatter = (
+export const spreadsheetDataFormatter = async (
   invoiceNo,
   date,
   cartDetail,
-  userDetail
+  userDetail,
+  totalPrice,
+  discountPrice,
+  subTotal
 ) => {
-  cartDetail.forEach((product) => {
-    appendSpreadsheet({
+  for (const product of cartDetail) {
+    await appendSpreadsheet({
       orderNo: invoiceNo,
       name: userDetail.name,
       email: userDetail.email,
@@ -81,6 +89,9 @@ export const spreadsheetDataFormatter = (
       totalPrice: product.quantity * product.salePrice,
       productId: product.id,
       productName: product.title,
+      cartTotalPrice: totalPrice,
+      cartDiscountPrice: discountPrice,
+      cartActualPrice: subTotal,
       quantity: product.quantity,
       price: product.salePrice,
       address: stringCombine(userDetail.address, "name", "info"),
@@ -92,5 +103,5 @@ export const spreadsheetDataFormatter = (
       paymentMethod: orderPaymentMethod(userDetail.card),
       transactionId: userDetail.transactionId,
     }).catch((err) => console.log(err));
-  });
+  }
 };

@@ -82,12 +82,10 @@ const OrderItem: React.FC<CartItemProps> = ({ product }) => {
 const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
   const [hasCoupon, setHasCoupon] = useState(false);
   const { state } = useContext(ProfileContext);
-  const { isRtl } = useLocale();
   const {
     items,
     removeCoupon,
     coupon,
-    clearCart,
     cartItemsCount,
     calculatePrice,
     calculateDiscount,
@@ -112,7 +110,6 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
   const handleSubmit = async () => {
     setLoading(true);
     if (isValid) {
-      // clearCart();
       Router.push("/order-received");
     }
     setLoading(false);
@@ -144,11 +141,9 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
     return () => {
       if (isRestaurant) {
         toggleRestaurant();
-        // clearCart();
       }
     };
   }, []);
-
   return (
     <form>
       <CheckoutWrapper>
@@ -160,6 +155,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                 inputTitle={"Name"}
                 inputName="name"
                 inputType="text"
+                notes=""
               />
             </InformationBox>
             {/*  Email */}
@@ -168,6 +164,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                 inputTitle={"Email"}
                 inputName="email"
                 inputType="email"
+                notes=""
               />
             </InformationBox>
             {/* Brush Name */}
@@ -233,6 +230,8 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                     inputTitle={"Transaction ID"}
                     inputName="transactionId"
                     inputType="text"
+                    notes="Pay the correct amount shown in 'Total' price though the upi id and enter the successful transaction id in below box,if you'r facing any issues
+                    send mail to 'support@albashop.live'  upi id: albashop@oksbi.in"
                   />
                 </div>
               )}

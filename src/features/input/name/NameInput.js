@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import { Input } from "components/forms/input";
 import { ProfileContext } from "contexts/profile/profile.context";
 
-const NameInput = ({ inputTitle, inputName, inputType }) => {
+const NameInput = ({ inputTitle, inputName, inputType, notes }) => {
   const { dispatch } = useContext(ProfileContext);
 
   const handleChange = (e) => {
@@ -20,6 +20,7 @@ const NameInput = ({ inputTitle, inputName, inputType }) => {
       <CardHeader increment={true}>
         <FormattedMessage id="inputMessage" defaultMessage={inputTitle} />
       </CardHeader>
+      {notes && <div style={{ marginBottom: "1.5rem" }}>{notes}</div>}
       <Input
         name={inputName}
         type={inputType}
