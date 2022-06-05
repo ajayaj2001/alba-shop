@@ -54,7 +54,7 @@ export const Banner: React.FC<Props> = ({
           <FormattedMessage
             id={intlDescriptionId}
             defaultMessage="Set Your Description Through Language File"
-            values={{ minute: 90 }}
+            values={{ minute: 24 }}
           />
         </Description>
         <SearchWrapper>

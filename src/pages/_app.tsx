@@ -21,6 +21,7 @@ import "components/scrollbar/scrollbar.css";
 import "@redq/reuse-modal/lib/index.css";
 import "swiper/swiper-bundle.min.css";
 import { GlobalStyle } from "assets/styles/global.style";
+import { ProfileProvider } from "contexts/profile/profile.provider";
 
 // Language translation messages
 import { messages } from "site-settings/site-translation/messages";
@@ -34,23 +35,46 @@ export default function ExtendedApp({ Component, pageProps }) {
   const desktop = useMedia("(min-width: 992px)");
   const apolloClient = useApollo(pageProps.initialApolloState);
 
+  const initialData = {
+    name: "",
+    email: "",
+    address: [],
+    brushName: [],
+    transactionId: "",
+    contact: [],
+    card: [
+      {
+        id: "179012",
+        type: "primary",
+        name: "Pay On Delivery",
+      },
+      {
+        id: "987234",
+        type: "secondary",
+        name: "UPI Payment",
+      },
+    ],
+  };
+
   return (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
         <LanguageProvider messages={messages}>
-          <CartProvider>
-            <AppProvider>
-              <AuthProvider>
-                <AppLayout>
-                  <Component
-                    {...pageProps}
-                    deviceType={{ mobile, tablet, desktop }}
-                  />
-                </AppLayout>
-              </AuthProvider>
-            </AppProvider>
-          </CartProvider>
+          <ProfileProvider initData={initialData}>
+            <CartProvider>
+              <AppProvider>
+                <AuthProvider>
+                  <AppLayout>
+                    <Component
+                      {...pageProps}
+                      deviceType={{ mobile, tablet, desktop }}
+                    />
+                  </AppLayout>
+                </AuthProvider>
+              </AppProvider>
+            </CartProvider>
+          </ProfileProvider>
         </LanguageProvider>
       </ThemeProvider>
     </ApolloProvider>

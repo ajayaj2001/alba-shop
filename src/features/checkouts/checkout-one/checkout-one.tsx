@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
-import Router from 'next/router';
-import { Button } from 'components/button/button';
+import React, { useContext, useState, useEffect } from "react";
+import Router from "next/router";
+import { Button } from "components/button/button";
 import CheckoutWrapper, {
   CheckoutContainer,
   OrderSummary,
@@ -13,17 +13,17 @@ import CheckoutWrapper, {
   PaymentOption,
   CheckoutSubmit,
   CouponBoxWrapper,
-} from './checkout-one.style';
+} from "./checkout-one.style";
 
-import { CouponDisplay } from 'components/coupon-box/coupon-box';
-import { ProfileContext } from 'contexts/profile/profile.context';
-import { FormattedMessage } from 'react-intl';
-import { useCart } from 'contexts/cart/use-cart';
-import Schedules from 'features/schedule/schedule';
-import Address from 'features/address/address';
-import Coupon from 'features/coupon/coupon';
-import Contact from 'features/contact/contact';
-import Payment from 'features/payment/payment';
+import { CouponDisplay } from "components/coupon-box/coupon-box";
+import { ProfileContext } from "contexts/profile/profile.context";
+import { FormattedMessage } from "react-intl";
+import { useCart } from "contexts/cart/use-cart";
+import Schedules from "features/schedule/schedule";
+import Address from "features/address/address";
+import Coupon from "features/coupon/coupon";
+import Contact from "features/contact/contact";
+import Payment from "features/payment/payment";
 
 // The type of props Checkout Form receives
 interface MyFormProps {
@@ -53,7 +53,7 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
     setLoading(true);
     if (isValid) {
       clearCart();
-      Router.push('/order-received');
+      Router.push("/order-received");
     }
     setLoading(false);
   };
@@ -86,9 +86,9 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
           <OrderSummary>
             <OrderSummaryItem style={{ marginBottom: 15 }}>
               <OrderLabel>
-                <FormattedMessage id='subTotal' defaultMessage='Subtotal' /> (
-                {cartItemsCount}{' '}
-                <FormattedMessage id='itemsText' defaultMessage='items' />)
+                <FormattedMessage id="subTotal" defaultMessage="Subtotal" /> (
+                {cartItemsCount}{" "}
+                <FormattedMessage id="itemsText" defaultMessage="items" />)
               </OrderLabel>
               <OrderAmount>${calculateSubTotalPrice()}</OrderAmount>
             </OrderSummaryItem>
@@ -96,8 +96,8 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
             <OrderSummaryItem style={{ marginBottom: 30 }}>
               <OrderLabel>
                 <FormattedMessage
-                  id='shippingFeeText'
-                  defaultMessage='Shipping Fee'
+                  id="shippingFeeText"
+                  defaultMessage="Shipping Fee"
                 />
               </OrderLabel>
               <OrderAmount>$0.00</OrderAmount>
@@ -105,16 +105,16 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
 
             <OrderSummaryItem
               style={{ marginBottom: 30 }}
-              className='voucherWrapper'
+              className="voucherWrapper"
             >
               <OrderLabel>
-                <FormattedMessage id='voucherText' defaultMessage='Voucher' />
+                <FormattedMessage id="voucherText" defaultMessage="Voucher" />
               </OrderLabel>
               {coupon ? (
                 <CouponDisplay
                   code={coupon.code}
-                  sign='-'
-                  currency='$'
+                  sign="-"
+                  currency="$"
                   price={calculateDiscount()}
                   onClick={(e) => {
                     e.preventDefault();
@@ -133,9 +133,9 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
 
             <OrderSummaryItem>
               <OrderLabel>
-                <FormattedMessage id='totalText' defaultMessage='Total' />
+                <FormattedMessage id="totalText" defaultMessage="Total" />
               </OrderLabel>
-              <OrderAmount>${calculatePrice()}</OrderAmount>
+              <OrderAmount>₹{calculatePrice()}</OrderAmount>
             </OrderSummaryItem>
           </OrderSummary>
           {/* DeliverySchedule */}
@@ -157,16 +157,16 @@ const Checkout: React.FC<MyFormProps> = ({ token, deviceType }) => {
           {/* CheckoutSubmit */}
           <CheckoutSubmit>
             <Button
-              type='button'
+              type="button"
               onClick={handleSubmit}
               disabled={!isValid}
-              size='big'
+              size="big"
               loading={loading}
-              width='100%'
+              width="100%"
             >
               <FormattedMessage
-                id='processCheckout'
-                defaultMessage='Proceed to Checkout'
+                id="processCheckout"
+                defaultMessage="Proceed to Checkout"
               />
             </Button>
           </CheckoutSubmit>

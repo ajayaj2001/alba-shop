@@ -1,11 +1,11 @@
-import React from 'react';
-import { themeGet } from '@styled-system/theme-get';
-import Carousel from 'react-multi-carousel';
-import styled from 'styled-components';
+import React from "react";
+import { themeGet } from "@styled-system/theme-get";
+import Carousel from "react-multi-carousel";
+import styled from "styled-components";
 
 const SingleItem = styled.li`
-  border: 1px solid ${themeGet('colors.gray.500', '#f1f1f1')};
-  border-radius: ${themeGet('radii.base', '6px')};
+  border: 1px solid ${themeGet("colors.gray.500", "#f1f1f1")};
+  border-radius: ${themeGet("radii.base", "6px")};
   margin-right: 20px;
   padding: 0;
   outline: none;
@@ -18,7 +18,7 @@ const SingleItem = styled.li`
   }
 
   &.custom-dot--active {
-    border: 2px solid ${themeGet('colors.primary.regular', '#009E7F')};
+    border: 2px solid ${themeGet("colors.primary.regular", "#009E7F")};
   }
 `;
 const responsive = {
@@ -57,10 +57,13 @@ const CarouselWithCustomDots = ({
       key={index}
       alt={title}
       style={{
-        minWidth: 'auto',
-        height: 'auto',
-        position: 'relative',
-        margin: 'auto',
+        minWidth: "360px",
+        height: "auto",
+        position: "relative",
+        margin: "auto",
+        maxHeight: "360px",
+        marginBottom: "3rem",
+        borderRadius: "3rem",
       }}
       className="product-image"
     />
@@ -70,7 +73,7 @@ const CarouselWithCustomDots = ({
       src={item.url}
       key={index}
       alt={title}
-      style={{ width: '100%', height: '100%', position: 'relative' }}
+      style={{ width: "100%", height: "100%", position: "relative" }}
     />
   ));
   const CustomDot = ({
@@ -84,19 +87,19 @@ const CarouselWithCustomDots = ({
         data-index={index}
         key={index}
         onClick={() => onClick()}
-        className={`custom-dot ${active && 'custom-dot--active'}`}
+        className={`custom-dot ${active && "custom-dot--active"}`}
       >
         {React.Children.toArray(images)[index]}
       </SingleItem>
     );
   };
 
-  let deviceType = 'desktop';
+  let deviceType = "desktop";
   if (mobile) {
-    deviceType = 'mobile';
+    deviceType = "mobile";
   }
   if (tablet) {
-    deviceType = 'tablet';
+    deviceType = "tablet";
   }
   return (
     <Carousel

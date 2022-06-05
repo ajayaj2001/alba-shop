@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { themeGet } from "@styled-system/theme-get";
+import TextField from "components/forms/text-field";
 import * as Yup from "yup";
 import { closeModal } from "@redq/reuse-modal";
 import { FormikProps, ErrorMessage, Formik, Form } from "formik";
-import { useMutation } from "@apollo/client";
 import MaskedInput from "react-text-mask";
 import { ProfileContext } from "contexts/profile/profile.context";
 import { Button } from "components/button/button";
-import { UPDATE_CONTACT } from "graphql/mutation/contact";
-import { FieldWrapper, Heading } from "./contact-card.style";
+import { FieldWrapper, Heading } from "./brushName-card.style";
 import { FormattedMessage } from "react-intl";
 
 type Props = {
@@ -19,27 +18,21 @@ type Props = {
 type FormValues = {
   id?: number | null;
   type?: string;
-  number?: string;
+  name?: string;
 };
 
-const ContactValidationSchema = Yup.object().shape({
-  number: Yup.string().required("Number is required"),
+const BrushNameValidationSchema = Yup.object().shape({
+  name: Yup.string().required("name is required"),
 });
 
-const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
+const CreateOrUpdateBrushName: React.FC<Props> = ({ item }) => {
   const initialValues = {
     id: item.id || null,
-    type: item.type || "secondary",
-    number: item.number || "",
+    name: item.name || "",
   };
-  const [addContactMutation] = useMutation(UPDATE_CONTACT);
   const { state, dispatch } = useContext(ProfileContext);
   const handleSubmit = async (values: FormValues, { setSubmitting }: any) => {
-    await addContactMutation({
-      variables: { contactInput: JSON.stringify(values) },
-    });
-
-    dispatch({ type: "ADD_OR_UPDATE_CONTACT", payload: values });
+    dispatch({ type: "ADD_OR_UPDATE_BRUSH_NAME", payload: values });
     closeModal();
     setSubmitting(false);
   };
@@ -47,7 +40,7 @@ const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={ContactValidationSchema}
+      validationSchema={BrushNameValidationSchema}
     >
       {({
         values,
@@ -57,46 +50,26 @@ const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
       }: FormikProps<FormValues>) => (
         <Form>
           <Heading>
-            {item && item.id ? "Edit Contact" : "Add New Contact"}
+            {item && item.id ? "Edit Brush Name" : "Add New Brush Name"}
           </Heading>
           <FieldWrapper>
-            <MaskedInput
-              mask={[
-                /[1-9]/,
-                /\d/,
-                /\d/,
-                /\d/,
-                /\d/,
-                /\d/,
-                /\d/,
-                /\d/,
-                /\d/,
-                /\d/,
-              ]}
-              className="form-control"
-              placeholder="Enter a phone number"
-              guide={false}
-              id="my-input-id"
-              value={values.number}
+            <TextField
+              name="name"
+              id="info"
+              placeholder="Enter Name"
+              value={values.name}
               onChange={handleChange}
               onBlur={handleBlur}
-              name="number"
-              render={(ref: any, props: {}) => (
-                <StyledInput ref={ref} {...props} />
-              )}
             />
           </FieldWrapper>
-          <ErrorMessage name="number" component={StyledError} />
+          <ErrorMessage name="name" component={StyledError} />
 
           <Button
             disabled={isSubmitting}
             type="submit"
             style={{ width: "100%", height: "44px" }}
           >
-            <FormattedMessage
-              id="savedContactId"
-              defaultMessage="Save Contact"
-            />
+            <FormattedMessage id="defaultMessage" defaultMessage="Save Name" />
           </Button>
         </Form>
       )}
@@ -104,7 +77,7 @@ const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
   );
 };
 
-export default CreateOrUpdateContact;
+export default CreateOrUpdateBrushName;
 
 const StyledInput = styled.input`
   width: 100%;

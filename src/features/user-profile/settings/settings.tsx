@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { useMutation } from '@apollo/client';
-import { ProfileContext } from 'contexts/profile/profile.context';
+import React, { useContext } from "react";
+import { useMutation } from "@apollo/client";
+import { ProfileContext } from "contexts/profile/profile.context";
 
 import {
   SettingsForm,
@@ -9,16 +9,16 @@ import {
   Title,
   Col,
   Row,
-} from './settings.style';
+} from "./settings.style";
 
-import { Button } from 'components/button/button';
-import { Input } from 'components/forms/input';
-import { UPDATE_ME } from 'graphql/mutation/me';
-import { FormattedMessage } from 'react-intl';
-import { Label } from 'components/forms/label';
-import Contact from 'features/contact/contact';
-import Address from 'features/address/address';
-import Payment from 'features/payment/payment';
+import { Button } from "components/button/button";
+import { Input } from "components/forms/input";
+import { UPDATE_ME } from "graphql/mutation/me";
+import { FormattedMessage } from "react-intl";
+import { Label } from "components/forms/label";
+import Contact from "features/contact/contact";
+import Address from "features/address/address";
+import Payment from "features/payment/payment";
 
 type SettingsContentProps = {
   deviceType?: {
@@ -35,7 +35,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
   const handleChange = (e) => {
     const { value, name } = e.target;
     dispatch({
-      type: 'HANDLE_ON_INPUT_CHANGE',
+      type: "HANDLE_ON_INPUT_CHANGE",
       payload: { value, field: name },
     });
   };
@@ -58,7 +58,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
             />
           </Title>
         </HeadingSection>
-        <Row style={{ alignItems: 'flex-end', marginBottom: '50px' }}>
+        <Row style={{ alignItems: "flex-end", marginBottom: "50px" }}>
           <Col xs={12} sm={5} md={5} lg={5}>
             <Label>
               <FormattedMessage
@@ -96,7 +96,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
           </Col>
 
           <Col xs={12} sm={2} md={2} lg={2}>
-            <Button size="big" style={{ width: '100%' }} onClick={handleSave}>
+            <Button size="big" style={{ width: "100%" }} onClick={handleSave}>
               <FormattedMessage id="profileSaveBtn" defaultMessage="Save" />
             </Button>
           </Col>
@@ -109,7 +109,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
           </Col>
         </Row>
         <Row>
-          <Col xs={12} sm={12} md={12} lg={12} style={{ position: 'relative' }}>
+          <Col xs={12} sm={12} md={12} lg={12} style={{ position: "relative" }}>
             <SettingsFormContent>
               <Address />
             </SettingsFormContent>

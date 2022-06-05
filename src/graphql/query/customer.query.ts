@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_LOGGED_IN_CUSTOMER = gql`
   query getUser($id: String = "1") {
@@ -6,6 +6,8 @@ export const GET_LOGGED_IN_CUSTOMER = gql`
       id
       name
       email
+      transactionId
+      brushName
       address {
         id
         type
@@ -20,9 +22,7 @@ export const GET_LOGGED_IN_CUSTOMER = gql`
       card {
         id
         type
-        cardType
         name
-        lastFourDigit
       }
     }
   }

@@ -1,5 +1,5 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 import OrderReceivedWrapper, {
   OrderReceivedContainer,
   OrderInfo,
@@ -12,12 +12,30 @@ import OrderReceivedWrapper, {
   ListItem,
   ListTitle,
   ListDes,
-} from './order-received.style';
-import { FormattedMessage } from 'react-intl';
+} from "./order-received.style";
+import { FormattedMessage } from "react-intl";
 
-type OrderReceivedProps = {};
+type OrderReceivedProps = {
+  cartDetails: any;
+  userDetails: any;
+  today: string;
+  totalPrice: number;
+  paymentMethod: string;
+  orderNumber: number;
+  invoiceUrl: string;
+};
 
-const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
+const OrderReceived: React.FunctionComponent<OrderReceivedProps> = ({
+  cartDetails,
+  userDetails,
+  today,
+  totalPrice,
+  paymentMethod,
+  orderNumber,
+  invoiceUrl,
+}) => {
+  const { address, schedules } = userDetails;
+
   return (
     <OrderReceivedWrapper>
       <OrderReceivedContainer>
@@ -26,7 +44,20 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
             <FormattedMessage id="backHomeBtn" defaultMessage="Back to Home" />
           </a>
         </Link>
-
+        {invoiceUrl && (
+          <Link href={invoiceUrl}>
+            <a
+              className="download-btn"
+              style={{ marginRight: "12rem" }}
+              download="invoice.pdf"
+            >
+              <FormattedMessage
+                id="backHomeBtnss"
+                defaultMessage="Download Invoice"
+              />
+            </a>
+          </Link>
+        )}
         <OrderInfo>
           <BlockTitle>
             <FormattedMessage
@@ -50,21 +81,21 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
                   defaultMessage="Order Number"
                 />
               </Text>
-              <Text>1444</Text>
+              <Text>{orderNumber}</Text>
             </InfoBlock>
 
             <InfoBlock>
               <Text bold className="title">
                 <FormattedMessage id="orderDateText" defaultMessage="Date" />
               </Text>
-              <Text>March 14, 2019</Text>
+              <Text>{today}</Text>
             </InfoBlock>
 
             <InfoBlock>
               <Text bold className="title">
                 <FormattedMessage id="totalText" defaultMessage="Total" />
               </Text>
-              <Text>$10,944.00</Text>
+              <Text>₹{totalPrice}</Text>
             </InfoBlock>
 
             <InfoBlock>
@@ -76,8 +107,8 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
               </Text>
               <Text>
                 <FormattedMessage
-                  id="paymentMethodName"
-                  defaultMessage="Cash on delivery"
+                  id="paymentMethodNames"
+                  defaultMessage={paymentMethod}
                 />
               </Text>
             </InfoBlock>
@@ -102,7 +133,27 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>6 Items</Text>
+              <Text>{cartDetails.length}</Text>
+            </ListDes>
+          </ListItem>
+
+          <ListItem>
+            <ListTitle>
+              <Text bold>
+                <FormattedMessage
+                  id="productNames"
+                  defaultMessage="ProductDetails :"
+                />
+              </Text>
+            </ListTitle>
+            <ListDes>
+              {cartDetails.map((cart) => (
+                <Text key={cart.id} style={{ paddingBottom: "1rem" }}>{`${
+                  cart.title
+                } (${cart.quantity}) (${
+                  cart.quantity * cart.salePrice
+                })`}</Text>
+              ))}
             </ListDes>
           </ListItem>
 
@@ -116,7 +167,13 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>1.00pm 10/12/19</Text>
+              <Text>
+                {
+                  schedules.filter((time) => {
+                    return time.type == "primary";
+                  })[0].time_slot
+                }
+              </Text>
             </ListDes>
           </ListItem>
 
@@ -130,7 +187,7 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>90 Minute Express Delivery</Text>
+              <Text>24 Hrs Express Delivery</Text>
             </ListDes>
           </ListItem>
 
@@ -144,9 +201,7 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>
-                1st Floor, House 149, Road-22, Mohakhali DOHS, Dhaka - North
-              </Text>
+              <Text>{address[0]?.info}</Text>
             </ListDes>
           </ListItem>
         </OrderDetails>
@@ -166,7 +221,7 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>$10,864.00</Text>
+              <Text>₹{totalPrice}</Text>
             </ListDes>
           </ListItem>
 
@@ -174,13 +229,13 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
             <ListTitle>
               <Text bold>
                 <FormattedMessage
-                  id="paymenMethodText"
+                  id="paymentMethodText"
                   defaultMessage="Payment Method"
                 />
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>Cash On Delivery</Text>
+              <Text>{paymentMethod}</Text>
             </ListDes>
           </ListItem>
 
@@ -188,13 +243,13 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
             <ListTitle>
               <Text bold>
                 <FormattedMessage
-                  id="paymentMethodName"
+                  id="deliveryCharge"
                   defaultMessage="Delivery Charge"
                 />
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>10</Text>
+              <Text>₹ 0</Text>
             </ListDes>
           </ListItem>
 
@@ -205,7 +260,7 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = (props) => {
               </Text>
             </ListTitle>
             <ListDes>
-              <Text>$10,874.00</Text>
+              <Text>₹{totalPrice}</Text>
             </ListDes>
           </ListItem>
         </TotalAmount>
