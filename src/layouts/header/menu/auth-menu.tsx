@@ -1,8 +1,8 @@
-import React from 'react';
-import { Button } from 'components/button/button';
-import { FormattedMessage } from 'react-intl';
-import Popover from 'components/popover/popover';
-import { AuthorizedMenu } from './authorized-menu';
+import React from "react";
+import { Button } from "components/button/button";
+import { FormattedMessage } from "react-intl";
+import Popover from "components/popover/popover";
+import { AuthorizedMenu } from "./authorized-menu";
 
 interface Props {
   isAuthenticated: boolean;
@@ -12,11 +12,7 @@ interface Props {
 }
 
 const AuthMenu = ({ isAuthenticated, onJoin, onLogout, avatar }: Props) => {
-  return !isAuthenticated ? (
-    <Button variant="primary" onClick={onJoin}>
-      <FormattedMessage id="joinButton" defaultMessage="join" />
-    </Button>
-  ) : (
+  return (
     <Popover
       direction="right"
       className="user-pages-dropdown"
@@ -26,3 +22,8 @@ const AuthMenu = ({ isAuthenticated, onJoin, onLogout, avatar }: Props) => {
   );
 };
 export default AuthMenu;
+// !isAuthenticated ? (
+//   <Button variant="primary" onClick={onJoin}>
+//     <FormattedMessage id="joinButton" defaultMessage="join" />
+//   </Button>
+// ) : (  );

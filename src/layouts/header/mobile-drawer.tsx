@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import { openModal } from '@redq/reuse-modal';
-import Router from 'next/router';
-import { FormattedMessage } from 'react-intl';
-import { Scrollbar } from 'components/scrollbar/scrollbar';
-import Drawer from 'components/drawer/drawer';
-import { Button } from 'components/button/button';
-import NavLink from 'components/nav-link/nav-link';
-import { CloseIcon } from 'assets/icons/CloseIcon';
-import { AuthContext } from 'contexts/auth/auth.context';
-import AuthenticationForm from 'features/authentication-form';
+import React, { useContext } from "react";
+import { openModal } from "@redq/reuse-modal";
+import Router from "next/router";
+import { FormattedMessage } from "react-intl";
+import { Scrollbar } from "components/scrollbar/scrollbar";
+import Drawer from "components/drawer/drawer";
+import { Button } from "components/button/button";
+import NavLink from "components/nav-link/nav-link";
+import { CloseIcon } from "assets/icons/CloseIcon";
+import { AuthContext } from "contexts/auth/auth.context";
+import AuthenticationForm from "features/authentication-form";
 import {
   DrawerBody,
   HamburgerIcon,
@@ -22,16 +22,16 @@ import {
   DrawerMenu,
   DrawerMenuItem,
   UserOptionMenu,
-} from './header.style';
-import UserImage from 'assets/images/user.jpg';
+} from "./header.style";
+import UserImage from "assets/images/user.jpg";
 import {
   MOBILE_DRAWER_MENU,
   PROFILE_PAGE,
-} from 'site-settings/site-navigation';
-import { useAppState, useAppDispatch } from 'contexts/app/app.provider';
+} from "site-settings/site-navigation";
+import { useAppState, useAppDispatch } from "contexts/app/app.provider";
 
 const MobileDrawer: React.FunctionComponent = () => {
-  const isDrawerOpen = useAppState('isDrawerOpen');
+  const isDrawerOpen = useAppState("isDrawerOpen");
   const dispatch = useAppDispatch();
   const {
     authState: { isAuthenticated },
@@ -40,46 +40,46 @@ const MobileDrawer: React.FunctionComponent = () => {
   // Toggle drawer
   const toggleHandler = React.useCallback(() => {
     dispatch({
-      type: 'TOGGLE_DRAWER',
+      type: "TOGGLE_DRAWER",
     });
   }, [dispatch]);
 
   const handleLogout = () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('access_token');
-      authDispatch({ type: 'SIGN_OUT' });
-      Router.push('/');
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("access_token");
+      authDispatch({ type: "SIGN_OUT" });
+      Router.push("/");
     }
   };
 
   const signInOutForm = () => {
     dispatch({
-      type: 'TOGGLE_DRAWER',
+      type: "TOGGLE_DRAWER",
     });
 
     authDispatch({
-      type: 'SIGNIN',
+      type: "SIGNIN",
     });
 
     openModal({
       show: true,
-      overlayClassName: 'quick-view-overlay',
+      overlayClassName: "quick-view-overlay",
       closeOnClickOutside: true,
       component: AuthenticationForm,
-      closeComponent: '',
+      closeComponent: "",
       config: {
         enableResizing: false,
         disableDragging: true,
-        className: 'quick-view-modal',
+        className: "quick-view-modal",
         width: 458,
-        height: 'auto',
+        height: "auto",
       },
     });
   };
 
   return (
     <Drawer
-      width='316px'
+      width="316px"
       drawerHandler={
         <HamburgerIcon>
           <span />
@@ -96,20 +96,20 @@ const MobileDrawer: React.FunctionComponent = () => {
       }
     >
       <DrawerBody>
-        <Scrollbar className='drawer-scrollbar'>
+        <Scrollbar className="drawer-scrollbar">
           <DrawerContentWrapper>
             <DrawerProfile>
-              {isAuthenticated ? (
-                <LoginView>
-                  <UserAvatar>
-                    <img src={UserImage} alt='user_avatar' />
-                  </UserAvatar>
-                  <UserDetails>
-                    <h3>David Kinderson</h3>
-                    <span>+990 374 987</span>
-                  </UserDetails>
-                </LoginView>
-              ) : (
+              {/* {isAuthenticated ? ( */}
+              <LoginView>
+                <UserAvatar>
+                  <img src={UserImage} alt="user_avatar" />
+                </UserAvatar>
+                <UserDetails>
+                  <h3>David Kinderson</h3>
+                  <span>+990 374 987</span>
+                </UserDetails>
+              </LoginView>
+              {/* ) : (
                 <LogoutView>
                   <Button variant='primary' onClick={signInOutForm}>
                     <FormattedMessage
@@ -118,7 +118,7 @@ const MobileDrawer: React.FunctionComponent = () => {
                     />
                   </Button>
                 </LogoutView>
-              )}
+              )} */}
             </DrawerProfile>
 
             <DrawerMenu>
@@ -129,7 +129,7 @@ const MobileDrawer: React.FunctionComponent = () => {
                     href={item.href}
                     label={item.defaultMessage}
                     intlId={item.id}
-                    className='drawer_menu_item'
+                    className="drawer_menu_item"
                   />
                 </DrawerMenuItem>
               ))}
@@ -140,17 +140,17 @@ const MobileDrawer: React.FunctionComponent = () => {
                 <DrawerMenuItem>
                   <NavLink
                     href={PROFILE_PAGE}
-                    label='Your Account Settings'
-                    className='drawer_menu_item'
-                    intlId='navlinkAccountSettings'
+                    label="Your Account Settings"
+                    className="drawer_menu_item"
+                    intlId="navlinkAccountSettings"
                   />
                 </DrawerMenuItem>
                 <DrawerMenuItem>
-                  <div onClick={handleLogout} className='drawer_menu_item'>
-                    <span className='logoutBtn'>
+                  <div onClick={handleLogout} className="drawer_menu_item">
+                    <span className="logoutBtn">
                       <FormattedMessage
-                        id='navlinkLogout'
-                        defaultMessage='Logout'
+                        id="navlinkLogout"
+                        defaultMessage="Logout"
                       />
                     </span>
                   </div>
