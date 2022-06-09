@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import useOnClickOutside from './useOnClickOutside';
-import PopoverWrapper from './popover.style';
+import React, { useState, useEffect, useRef } from "react";
+import useOnClickOutside from "./useOnClickOutside";
+import PopoverWrapper from "./popover.style";
 
 type PopoverProps = {
   className?: string;
   handler: React.ReactNode;
   content: React.ReactNode;
-  direction?: 'left' | 'right';
+  direction?: "left" | "right";
   handleToggle?: () => void;
 };
 
@@ -23,7 +23,7 @@ const Popover: React.FC<PopoverProps> = ({
   const ref = useRef();
 
   // Add all classs to an array
-  const addAllClasses: string[] = ['popover-wrapper'];
+  const addAllClasses: string[] = ["popover-wrapper"];
 
   // className prop checking
   if (className) {
@@ -51,9 +51,9 @@ const Popover: React.FC<PopoverProps> = ({
 
   // Handle window event listener
   useEffect(() => {
-    window.addEventListener('click', handleDocumentClick);
+    window.addEventListener("click", handleDocumentClick);
     return () => {
-      window.removeEventListener('click', handleDocumentClick);
+      window.removeEventListener("click", handleDocumentClick);
     };
   });
 
@@ -61,7 +61,7 @@ const Popover: React.FC<PopoverProps> = ({
   useOnClickOutside(ref, () => setState((state) => false));
 
   return (
-    <PopoverWrapper className={addAllClasses.join(' ')} ref={ref}>
+    <PopoverWrapper className={addAllClasses.join(" ")} ref={ref}>
       <div className="popover-handler" onClick={handleToggle}>
         {handler}
       </div>

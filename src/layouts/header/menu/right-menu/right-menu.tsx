@@ -2,12 +2,13 @@ import React from "react";
 import dynamic from "next/dynamic";
 import NavLink from "components/nav-link/nav-link";
 import {
-  OFFER_MENU_ITEM,
+  // OFFER_MENU_ITEM,
   HELP_MENU_ITEM,
-  CONTACT_MENU_ITEM,
+  // CONTACT_MENU_ITEM,
 } from "site-settings/site-navigation";
 import { HelpIcon } from "assets/icons/HelpIcon";
 import { RightMenuBox } from "./right-menu.style";
+import LOGO from "assets/images/logo-solo.png";
 const AuthMenu = dynamic(() => import("../auth-menu"), { ssr: false });
 
 type Props = {
@@ -25,12 +26,12 @@ export const RightMenu: React.FC<Props> = ({
 }) => {
   return (
     <RightMenuBox>
-      <NavLink
+      {/* <NavLink
         className="menu-item"
         href={OFFER_MENU_ITEM.href}
         label={OFFER_MENU_ITEM.defaultMessage}
         intlId={OFFER_MENU_ITEM.id}
-      />
+      /> */}
       <NavLink
         className="menu-item"
         href={HELP_MENU_ITEM.href}
@@ -39,17 +40,17 @@ export const RightMenu: React.FC<Props> = ({
         iconClass="menu-icon"
         icon={<HelpIcon />}
       />
-      <NavLink
+      {/* <NavLink
         className="menu-item"
         href={CONTACT_MENU_ITEM.href}
         label={CONTACT_MENU_ITEM.defaultMessage}
         intlId={CONTACT_MENU_ITEM.id}
         // iconClass="menu-icon"
         //icon={<HelpIcon />}
-      />
+      /> */}
 
       <AuthMenu
-        avatar={avatar}
+        avatar={LOGO}
         onJoin={onJoin}
         onLogout={onLogout}
         isAuthenticated={isAuthenticated}

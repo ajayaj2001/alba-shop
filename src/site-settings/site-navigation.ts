@@ -25,16 +25,16 @@ export const HELP_MENU_ITEM = {
   defaultMessage: "Help",
   href: HELP_PAGE,
 };
-export const CONTACT_MENU_ITEM = {
-  id: "nav.contact",
-  defaultMessage: "Contact",
-  href: CONTACT_PAGE,
-};
-export const OFFER_MENU_ITEM = {
-  id: "nav.offer",
-  defaultMessage: "Offer",
-  href: OFFER_PAGE,
-};
+// export const CONTACT_MENU_ITEM = {
+//   id: "nav.contact",
+//   defaultMessage: "Contact",
+//   href: CONTACT_PAGE,
+// };
+// export const OFFER_MENU_ITEM = {
+//   id: "nav.offer",
+//   defaultMessage: "Offer",
+//   href: OFFER_PAGE,
+// };
 export const ORDER_MENU_ITEM = {
   id: "nav.order",
   href: YOUR_ORDER_PAGE,
@@ -51,23 +51,23 @@ export const PROFILE_MENU_ITEM = {
   href: PROFILE_PAGE,
 };
 export const AUTHORIZED_MENU_ITEMS = [
-  PROFILE_MENU_ITEM,
-  {
-    id: "nav.checkout",
-    defaultMessage: "Checkout",
-    href: CHECKOUT_PAGE,
-  },
-  {
-    id: "alternativeCheckout",
-    href: CHECKOUT_PAGE_TWO,
-    defaultMessage: "Checkout Alternative",
-  },
-  ORDER_MENU_ITEM,
-  {
-    id: "nav.order_received",
-    href: ORDER_RECEIVED_PAGE,
-    defaultMessage: "Order invoice",
-  },
+  // PROFILE_MENU_ITEM,
+  // {
+  //   id: "nav.checkout",
+  //   defaultMessage: "Checkout",
+  //   href: CHECKOUT_PAGE,
+  // },
+  // {
+  //   id: "alternativeCheckout",
+  //   href: CHECKOUT_PAGE_TWO,
+  //   defaultMessage: "Checkout Alternative",
+  // },
+  // ORDER_MENU_ITEM,
+  // {
+  //   id: "nav.order_received",
+  //   href: ORDER_RECEIVED_PAGE,
+  //   defaultMessage: "Order invoice",
+  // },
   {
     id: "nav.terms_and_services",
     defaultMessage: "Terms and Services",
@@ -93,8 +93,8 @@ export const CATEGORY_MENU_ITEMS = [
 export const MOBILE_DRAWER_MENU = [
   HOME_MENU_ITEM,
   ...AUTHORIZED_MENU_ITEMS,
-  HELP_MENU_ITEM,
-  OFFER_MENU_ITEM,
+  // HELP_MENU_ITEM,
+  // OFFER_MENU_ITEM,
 ];
 
 export const PROFILE_SIDEBAR_TOP_MENU = [ORDER_MENU_ITEM, HELP_MENU_ITEM];
