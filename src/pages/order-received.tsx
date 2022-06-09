@@ -15,6 +15,7 @@ import {
 import { cartItemsTotalPrice } from "contexts/cart/cart.reducer";
 import { BlobProvider } from "@react-pdf/renderer";
 import Invoice from "../components/pdfGenerator/Invoice";
+import { sendMail } from "utils/mail";
 
 const OrderReceivedPage = () => {
   const { state } = useContext(ProfileContext);
@@ -31,10 +32,10 @@ const OrderReceivedPage = () => {
   useEffect(() => {
     setIsClient(true);
     if (!state.name) {
-      console.log(state, "redirect to error");
-
       Router.push("/checkout");
     }
+
+    sendMail(orderNumber, state.name, state.email, "success");
 
     spreadsheetDataFormatter(
       orderNumber,
