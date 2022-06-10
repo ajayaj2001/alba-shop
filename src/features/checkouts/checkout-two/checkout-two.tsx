@@ -231,7 +231,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                     inputName="transactionId"
                     inputType="text"
                     notes="Pay the correct amount shown in 'Total' price though the upi id and enter the successful transaction id in below box,if you'r facing any issues
-                    send mail to 'support@albashop.live'  upi id: albashop@oksbi.in"
+                    send mail to 'support@albashop.live'  upi id: albashop2022@ybl"
                   />
                 </div>
               )}
