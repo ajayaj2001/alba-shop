@@ -79,7 +79,7 @@ const OrderReceived: React.FunctionComponent<OrderReceivedProps> = ({
           </Link>
         )}
         <OrderInfo>
-          <BlockTitle>
+          <BlockTitle style={{ marginTop: "2rem" }}>
             <FormattedMessage
               id="orderReceivedText"
               defaultMessage="Order Received"
