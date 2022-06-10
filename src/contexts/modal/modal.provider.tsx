@@ -1,11 +1,11 @@
-import dynamic from 'next/dynamic';
-import React, { useCallback, useState, useMemo } from 'react';
-import { ModalType, ModalContext } from './modal.context';
-import { useMedia } from 'utils/use-media';
-const SpringModal = dynamic(() =>
-  import('components/spring-modal/spring-modal')
+import dynamic from "next/dynamic";
+import React, { useCallback, useState, useMemo } from "react";
+import { ModalType, ModalContext } from "./modal.context";
+import { useMedia } from "utils/use-media";
+const SpringModal = dynamic(
+  () => import("components/spring-modal/spring-modal")
 );
-const CenterModal = dynamic(() => import('components/modal/center-modal'));
+const CenterModal = dynamic(() => import("components/modal/center-modal"));
 
 /**
  * Modal Provider Props
@@ -58,13 +58,12 @@ export const ModalProvider = ({
     }
   }, []);
   const contextValue: any = { showModal, hideModal };
-  const isSmall = useMedia('(max-width: 767px)');
+  const isSmall = useMedia("(max-width: 767px)");
   return (
     <ModalContext.Provider value={contextValue}>
       <React.Fragment>
         {children}
         {Object.keys(modals).map((currentKey) => {
-          console.log(currentKey, modals[currentKey]);
           const { component: Component, isOpen, onClose } = modals[currentKey];
           return isSmall ? (
             <SpringModal

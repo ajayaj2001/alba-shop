@@ -98,8 +98,8 @@ const MobileDrawer: React.FunctionComponent = () => {
       <DrawerBody>
         <Scrollbar className="drawer-scrollbar">
           <DrawerContentWrapper>
-            <DrawerProfile>
-              {/* {isAuthenticated ? ( */}
+            {/* <DrawerProfile>
+              {isAuthenticated ? (
               <LoginView>
                 <UserAvatar>
                   <img src={UserImage} alt="user_avatar" />
@@ -109,7 +109,7 @@ const MobileDrawer: React.FunctionComponent = () => {
                   <span>+990 374 987</span>
                 </UserDetails>
               </LoginView>
-              {/* ) : (
+               ) : (
                 <LogoutView>
                   <Button variant='primary' onClick={signInOutForm}>
                     <FormattedMessage
@@ -118,8 +118,8 @@ const MobileDrawer: React.FunctionComponent = () => {
                     />
                   </Button>
                 </LogoutView>
-              )} */}
-            </DrawerProfile>
+              )} 
+            </DrawerProfile> */}
 
             <DrawerMenu>
               {MOBILE_DRAWER_MENU.map((item) => (
