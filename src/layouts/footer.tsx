@@ -25,10 +25,10 @@ const Box = styled.div(
 const Footer = () => {
   return (
     <Box>
-      <FormattedMessage id="siteFooter" defaultMessage="Alba is a product of" />
+      <FormattedMessage id="siteFooter" defaultMessage="Alba is developed by" />
       &nbsp;
-      <a href="#" target="_blank">
-        RedQ, Inc.
+      <a href="https://ajayaj.tech" target="_blank">
+        AJAY
       </a>
     </Box>
   );

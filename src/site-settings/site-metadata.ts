@@ -1,7 +1,7 @@
 export const siteMetadata = {
   title: `Alba`,
   author: {
-    name: `RedQ, Inc`,
+    name: `Alba, Inc`,
     summary: ``,
   },
   description: ``,
