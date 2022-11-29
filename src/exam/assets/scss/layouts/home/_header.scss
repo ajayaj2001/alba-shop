@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&display=swap');
+.header {
+  z-index: 10;
+  width: 100%;
+  background-image: linear-gradient(180deg, hsl(0deg 0% 0%), hsl(0deg 0% 0% / 57%));
+  display: flex;
+  flex-direction: row;
+  height: 6rem;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  @media (max-width: 450px) {
+    height: 9rem;
+  }
+
+  &_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 90%;
+    max-width: 110rem;
+    @media (max-width: 960px) {
+      justify-content: space-between;
+    }
+    @media (max-width: 450px) {
+      height: 9rem;
+    }
+  }
+
+  &_banner {
+    display: flex;
+    flex-direction: row;
+    width: 10rem;
+    padding-top: 2.5rem;
+    text-decoration: none;
+    padding-bottom: 2rem;
+    @media (max-width: 600px) {
+      margin-top: 2rem;
+    }
+    @media (max-width: 450px) {
+      margin-top: 0rem;
+    }
+    &-logo {
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+      margin-top: -0.8rem;
+      border-radius: 20rem;
+      font-family: 'Fontdiner Swanky', cursive;
+      font-size: $font-lg;
+      padding: 0.5rem;
+      font-weight: 900;
+      background-color: $logo-color;
+      color: $primary;
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      @media (max-width: 1300px) {
+        font-size: 1.8rem;
+        padding: 1.5rem;
+      }
+      @media (max-width: 960px) {
+        padding: 1.8rem;
+        padding-top: 1.5rem;
+      }
+      @media (max-width: 600px) {
+        font-size: 2.2rem;
+        padding: 2.2rem;
+        width: 3rem;
+        height: 3rem;
+
+        margin-right: 2rem;
+      }
+      @media (max-width: 450px) {
+        font-size: 2.2rem;
+        padding: 1.5rem;
+      }
+    }
+    &-name {
+      margin: 0rem;
+      color: $primary;
+      font-family: 'Inter', sans-serif;
+      font-weight: 900;
+      line-height: 1.4;
+      @media (max-width: 1300px) {
+        font-size: 16px !important;
+        padding-top: 0.7rem;
+      }
+      @media (max-width: 450px) {
+        padding-top: 0.7rem;
+      }
+    }
+  }
+  &_tabs {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+  }
+  &_tab {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: $tab;
+    &:hover {
+      color: $primary;
+    }
+  }
+  &_button {
+    width: 9vw;
+    height: 2.9rem;
+    background-color: #ffdd00 !important;
+    font-weight: 700 !important;
+    font-family: 'Nunito', sans-serif;
+    font-size: $font-md;
+    letter-spacing: 0.7px;
+    text-decoration: none !important;
+    @media (max-width: 1580px) {
+      width: 11rem;
+      height: 3rem;
+      line-height: 1.4 !important;
+    }
+    @media (max-width: 1300px) {
+      width: 14rem !important;
+      height: 4rem;
+      font-size: 15px !important;
+    }
+  }
+  &_mv {
+    display: flex;
+    flex-direction: column;
+    width: 19rem;
+    align-items: center;
+    @media (max-width: 960px) {
+      margin-top: 2rem;
+      width: 35rem;
+    }
+    &-link {
+      font-size: $font-md;
+      padding-bottom: 12px;
+      @media (max-width: 450px) {
+        font-size: 18px;
+        padding-top: 0.8rem;
+      }
+    }
+    &-button {
+      width: 17rem;
+      height: 3rem;
+      background-color: #ffdd00 !important;
+      font-weight: 700 !important;
+      font-size: $font-lg-2 !important;
+      @media (max-width: 960px) {
+        width: 100% !important;
+        height: 6rem;
+        font-size: 2rem !important;
+      }
+    }
+  }
+}
+
+.MuiPopover-paper {
+  background-color: rgba($black, 0.4) !important;
+  border: none !important;
+}

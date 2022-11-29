@@ -1,0 +1,231 @@
+.subject {
+  padding: 10rem 0rem 0rem 0rem;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  @media (max-width: 450px) {
+    padding-top: 20rem;
+  }
+  &_image {
+    @media (max-width: 1700px) {
+      padding-top: 2rem !important;
+    }
+    @media (max-width: 1300px) {
+      margin-top: 10rem;
+      width: 15rem;
+      height: 15rem;
+    }
+    @media (max-width: 750px) {
+      display: none;
+    }
+
+    &-1 {
+      @media (max-width: 1300px) {
+        margin-top: 10rem;
+        width: 18rem;
+        height: 18rem;
+      }
+      @media (max-width: 750px) {
+        display: none;
+      }
+    }
+  }
+  &_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 140rem;
+    @media (max-width: 1700px) {
+      width: 90%;
+    }
+    @media (max-width: 960px) {
+      width: 95%;
+    }
+  }
+  &_accordion {
+    width: 55%;
+    margin-right: 4rem;
+    @media (max-width: 1700px) {
+      width: 85%;
+    }
+    @media (max-width: 1400px) {
+      width: 100%;
+    }
+    @media (max-width: 600px) {
+      margin-right: 0rem;
+    }
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-heading {
+      width: 95%;
+      text-align: center;
+      padding-bottom: 5rem;
+      @media (max-width: 1300px) {
+        width: 100%;
+      }
+      @media (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      &-heading {
+        color: $primary;
+        width: 100%;
+
+        font-size: $font-lg-3;
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+        padding-bottom: 1.2rem;
+        @media (max-width: 1400px) {
+          font-size: 2.5rem;
+        }
+        @media (max-width: 600px) {
+          font-size: 3.3rem;
+        }
+        @media (max-width: 450px) {
+          font-size: 3.8rem;
+          padding-bottom: 2rem;
+        }
+      }
+      &-subheading {
+        width: 100%;
+        font-size: $font-lg-3;
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+        @media (max-width: 1400px) {
+          font-size: 2.5rem;
+        }
+        @media (max-width: 600px) {
+          font-size: 3.3rem;
+        }
+        @media (max-width: 450px) {
+          font-size: 3.8rem;
+          padding-bottom: 2rem;
+        }
+      }
+      &-content {
+        margin: 0 auto;
+        text-align: center;
+        width: 100%;
+        color: $secondary;
+        font-size: $font-md;
+        line-height: 1.8rem;
+        @media (max-width: 1400px) {
+          font-size: 15px;
+        }
+        @media (max-width: 1300px) {
+          line-height: 2.5rem;
+        }
+        @media (max-width: 600px) {
+          line-height: 3.3rem;
+          width: 90%;
+        }
+      }
+    }
+    &-container {
+      min-width: 50vw;
+    }
+    &-content {
+      width: 100%;
+
+      @media (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      &-1 {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 4rem;
+        div {
+          background-color: transparent !important;
+        }
+        @media (max-width: 600px) {
+          justify-content: center;
+        }
+      }
+      &-2 {
+        display: flex;
+        justify-content: center;
+        div {
+          background-color: transparent !important;
+        }
+      }
+      &-3 {
+        display: flex;
+        justify-content: flex-end;
+        div {
+          background-color: transparent !important;
+        }
+        @media (max-width: 600px) {
+          justify-content: center;
+        }
+      }
+      &-4 {
+        display: flex;
+        justify-content: center;
+        div {
+          background-color: transparent !important;
+        }
+      }
+      &-5 {
+        display: flex;
+        justify-content: flex-end;
+        div {
+          background-color: transparent !important;
+        }
+        @media (max-width: 600px) {
+          justify-content: center;
+        }
+      }
+      &-card {
+        width: 80%;
+        margin: 0rem 0rem 1rem 0rem;
+        @media (max-width: 600px) {
+          width: 80vw;
+        }
+        &-heading {
+          font-size: $font-lg-2;
+          font-weight: 800;
+          font-family: 'Inter', sans-serif;
+          @media (max-width: 1400px) {
+            font-size: 1.4rem;
+          }
+          @media (max-width: 600px) {
+            font-size: 2.2rem;
+          }
+        }
+        &-content {
+          color: $secondary;
+          font-size: $font-md;
+          width: 100%;
+          line-height: 3rem;
+          @media (max-width: 1400px) {
+            font-size: 1rem;
+          }
+          @media (max-width: 600px) {
+            font-size: 2rem;
+            line-height: 3rem;
+          }
+          @media (max-width: 450px) {
+            width: 90%;
+          }
+          @media (max-width: 350px) {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.MuiAccordion-root {
+  background-image: linear-gradient(90deg, $card-bg, #000);
+  color: $white !important;
+  border-radius: 0.7rem !important;
+  padding: 0.5rem 0rem 0.8rem 1rem;
+  max-width: 60rem;
+}

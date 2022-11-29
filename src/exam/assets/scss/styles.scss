@@ -1,0 +1,45 @@
+//common scss
+@import './common/variables';
+@import './common/cursor';
+
+//layout components
+@import './layouts/home/footer';
+@import './layouts/home/header';
+
+//module labExam
+
+@import './modules/labExam/fileDetails';
+@import './modules/labExam/contact';
+
+//font
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Nunito:wght@300;400;600;700;800;900&display=swap');
+
+body {
+  margin: 0px;
+  font-family: 'Nunito', sans-serif;
+  background-color: $backgroundColor;
+  color: $white;
+  overflow-x: hidden;
+}
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+
+  @media (max-width: 1600px) {
+    font-size: 14px;
+  }
+  @media (max-width: 1300px) {
+    font-size: 10.5px;
+  }
+  @media (max-width: 960px) {
+    font-size: 9px;
+  }
+  @media (max-width: 600px) {
+    font-size: 7px;
+  }
+}
+::selection {
+  background: $selection-bg;
+  color: $white;
+  text-shadow: none;
+}

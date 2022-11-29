@@ -23,10 +23,13 @@ import "swiper/swiper-bundle.min.css";
 import { GlobalStyle } from "assets/styles/global.style";
 import { ProfileProvider } from "contexts/profile/profile.provider";
 
+//style
+import "exam/assets/scss/styles.scss";
 // Language translation messages
 import { messages } from "site-settings/site-translation/messages";
 import "typeface-lato";
 import "typeface-poppins";
+import { useEffect } from "react";
 const AppLayout = dynamic(() => import("layouts/app-layout"));
 
 export default function ExtendedApp({ Component, pageProps }) {
@@ -34,6 +37,12 @@ export default function ExtendedApp({ Component, pageProps }) {
   const tablet = useMedia("(max-width: 991px)");
   const desktop = useMedia("(min-width: 992px)");
   const apolloClient = useApollo(pageProps.initialApolloState);
+  let hostName = "";
+  useEffect(() => {
+    if (window) {
+      hostName = window.location.pathname;
+    }
+  }, []);
 
   const initialData = {
     name: "",
@@ -56,8 +65,9 @@ export default function ExtendedApp({ Component, pageProps }) {
     ],
   };
 
-  return (
+  return hostName === "/exam" ? (
     <ApolloProvider client={apolloClient}>
+      {console.log()}
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
         <LanguageProvider messages={messages}>
@@ -78,5 +88,7 @@ export default function ExtendedApp({ Component, pageProps }) {
         </LanguageProvider>
       </ThemeProvider>
     </ApolloProvider>
+  ) : (
+    <Component {...pageProps} deviceType={{ mobile, tablet, desktop }} />
   );
 }
